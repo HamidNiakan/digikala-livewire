@@ -11,10 +11,11 @@
             <span class="profile__name">کاربر : محمد نیکو</span>    </div>
 
         <ul>
-            <li class="item-li i-dashboard is-active"><a href="index.html">پیشخوان</a></li>
+            <li class="item-li i-dashboard {{request()->routeIs('admin.dashboard') ? 'is-active' : ''}}"><a href="{{route('admin.dashboard')}}">پیشخوان</a></li>
+            <li class="item-li i-categories {{request()->routeIs('admin.category.index') ? 'is-active' : ''}}"><a href="{{route('admin.category.index')}}">دسته بندی ها</a></li>
             <li class="item-li i-courses "><a href="courses.html">دوره ها</a></li>
             <li class="item-li i-users"><a href="users.html"> کاربران</a></li>
-            <li class="item-li i-categories"><a href="categories.html">دسته بندی ها</a></li>
+
             <li class="item-li i-slideshow"><a href="slideshow.html">اسلایدشو</a></li>
             <li class="item-li i-banners"><a href="banners.html">بنر ها</a></li>
             <li class="item-li i-articles"><a href="articles.html">مقالات</a></li>

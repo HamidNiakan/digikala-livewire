@@ -16,6 +16,7 @@
 <livewire:panel.admin.dashboard.side-bar/>
 <div class="content">
     <livewire:panel.admin.dashboard.header/>
+    <livewire:panel.admin.dashboard.breadcrumb/>
     {{$slot}}
 </div>
 </body>
@@ -24,6 +25,7 @@
 <script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/popper.min.js')}}"></script>
 <script src="{{asset('asset/panel/admin')}}/js/js.js"></script>
+<script src="{{mix('js/app.js')}}"></script>
 @livewireScripts
 @stack('scripts')
 </html>
