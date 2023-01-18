@@ -38,6 +38,10 @@
         <div class="mb-3">
             <label for="formFile" class="form-label">آپلود ایکون</label>
             <input class="form-control" type="file" wire:model.defer="icon" id="formFile">
+            <div class="progress mt-2" wire:target="icon"  style="display: none" id="progressBar">
+                <div class="progress-bar progress-bar-striped progress-bar-animated" wire:target="icon" role="progressbar"></div>
+            </div>
+
             @error('icon')
             <div class="invalid-feedback" style="display: flex">
                 {{$message}}
@@ -45,11 +49,11 @@
             @enderror
         </div>
             @if($icon)
-                <div class="img-thumbnail mb-3">
-                        <img class="img-fluid" src="{{$icon->temporaryUrl()}}">
-                </div>
+{{--                <div class="img-thumbnail mb-3">--}}
+{{--                        <img class="img-fluid" src="{{$icon->temporaryUrl()}}">--}}
+{{--                </div>--}}
             @endif
         &nbsp;
-        <button type="submit" class="btn btn-brand">اضافه کردن</button>
+        <button type="submit" class="btn btn-brand" id="submit">اضافه کردن</button>
     </form>
 </div>

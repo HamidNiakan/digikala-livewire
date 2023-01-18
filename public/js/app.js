@@ -31264,6 +31264,7 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().mixin({
   }
 });
 window.addEventListener('livewire:load', function () {
+  uploadFile();
   Livewire.on('destroy', function (id) {
     $('.table').find('#row' + id).remove();
   });
@@ -31274,6 +31275,39 @@ window.addEventListener('livewire:load', function () {
     });
   });
 });
+function uploadFile() {
+  var progressSection = document.querySelector('#progressBar'),
+    progressBar = progressSection.querySelector('.progress-bar');
+  var btn = $('#submit');
+  document.addEventListener('livewire-upload-start', function () {
+    Toast.fire({
+      icon: 'info',
+      title: 'شروع عملیات آپلود فایل'
+    });
+    progressSection.style.display = 'flex';
+    btn.attr('disabled', true);
+  });
+  document.addEventListener('livewire-upload-finish', function () {
+    Toast.fire({
+      icon: 'info',
+      title: 'آپلود فایل به اتمام رسید.'
+    });
+    progressSection.style.display = 'none';
+    btn.attr('disabled', false);
+  });
+  document.addEventListener('livewire-upload-error', function () {
+    Toast.fire({
+      icon: 'info',
+      title: 'آپلود فایل با خطا مواحع شدو'
+    });
+    progressSection.style.display = 'none';
+    btn.attr('disabled', false);
+  });
+  document.addEventListener('livewire-upload-progress', function (event) {
+    progressBar.style.width = "".concat(event.detail.progress, "%");
+    progressBar.textContent = "".concat(event.detail.progress, "%");
+  });
+}
 })();
 
 /******/ })()

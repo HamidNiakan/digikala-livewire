@@ -4,11 +4,13 @@ namespace App\Http\Livewire\Panel\Admin\Category;
 
 use App\Http\Requests\category\AddCategoryRequest;
 use App\Models\Category;
+use App\Traits\SweatAlert;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class Form extends Component {
 	use WithFileUploads;
+	use SweatAlert;
 	
 	public Category $category;
 	public          $icon;
@@ -29,10 +31,10 @@ class Form extends Component {
 		$this->validate();
 		$this->category->save();
 		$this->emitUp('refreshTable');
-		$this->emit('toast' , [
-			'icon' => __('alert-icon.success') ,
-			'title' => __('messages.category.creation') ,
-		]);
+		$this->toastMessage([
+								'icon' => __('alert-icon.success') ,
+								'title' => __('messages.category.creation') ,
+							]);
 		$this->category->addMedia($this->icon)
 					   ->usingName($this->category->slug)
 					   ->toMediaCollection('category-icon');

@@ -9,8 +9,8 @@
                 |
                 <a class="tab__item" href="new-course.html">جستجو:</a>
                 <a class="t-header-search">
-                    <form action="" onclick="event.preventDefault();">
-                        <input type="text"  class="text"  placeholder="جستجو ...">
+                    <form>
+                        <input type="text" wire:model.debounce.10000="search" class="text" placeholder="جستجو ...">
                     </form>
                 </a>
             </div>
@@ -31,12 +31,21 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($categories as $category)
-                            <livewire:panel.admin.category.data-table :category="$category" :key="time().$category->id"/>
-                        @endforeach
+                        @if($categories->isNotEmpty())
+                            @foreach($categories as $category)
+                                <livewire:panel.admin.category.data-table :category="$category" :key="time().$category->id"/>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6">
+                                    اطلاعات یافت نشد
+                                </td>
+                            </tr>
+                        @endif
 
                         </tbody>
                     </table>
+                    {{$categories->render()}}
                 </div>
             </div>
             <div class="col-4 bg-white padding-0">
