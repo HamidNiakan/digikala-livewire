@@ -16,7 +16,7 @@ class DataTable extends Component {
 			$this->category->is_published = false;
 			$this->category->touch();
 			$this->toastMessage([
-									'icon' => __('alert-icon.success') ,
+									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.category.unpublished'),
 								]);
 		}
@@ -24,7 +24,7 @@ class DataTable extends Component {
 			$this->category->is_published = true;
 			$this->category->touch();
 			$this->toastMessage([
-									'icon' => __('alert-icon.success') ,
+									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.category.published'),
 								]);
 		}
@@ -34,9 +34,13 @@ class DataTable extends Component {
 		$this->emit('destroy' , $this->category->id);
 		$this->category->delete();
 		$this->toastMessage([
-								'icon' => __('alert-icon.success') ,
+								'icon' => __('alert-icon.icon.success') ,
 								'title' => __('messages.category.destroy'),
 							]);
+	}
+	
+	public function edit() {
+		return redirect()->route('admin.category.update',['slug' => $this->category->slug]);
 	}
 	
 	public function render () {

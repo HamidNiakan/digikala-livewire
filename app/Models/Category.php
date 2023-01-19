@@ -15,6 +15,10 @@ class Category extends Model implements HasMedia
 	use SoftDeletes;
 	use InteractsWithMedia;
 	
+	protected $with = [
+		'media'
+	];
+	
 	protected $fillable = [
 		'title',
 		'slug',

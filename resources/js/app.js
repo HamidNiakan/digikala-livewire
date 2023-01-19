@@ -36,6 +36,29 @@ window.addEventListener('livewire:load', () => {
             title: params.title
         })
     })
+
+    Livewire.on('popup-dialog', (params) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: params.title,
+            text: params.text,
+            icon: params.icon,
+            showCancelButton: false,
+            confirmButtonText: 'باشه',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = params.route
+            }
+        })
+    })
 })
 
 
@@ -59,16 +82,16 @@ function uploadFile() {
             title: 'آپلود فایل به اتمام رسید.'
         })
         progressSection.style.display = 'none';
-        btn.attr('disabled',false);
+        btn.attr('disabled', false);
     })
 
     document.addEventListener('livewire-upload-error', () => {
         Toast.fire({
             icon: 'info',
-            title: 'آپلود فایل با خطا مواحع شدو'
+            title: 'آپلود فایل با خطا مواحه شد.'
         })
         progressSection.style.display = 'none';
-        btn.attr('disabled',false);
+        btn.attr('disabled', false);
     })
 
     document.addEventListener('livewire-upload-progress', (event) => {

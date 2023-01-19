@@ -49,9 +49,9 @@
             @enderror
         </div>
             @if($icon)
-{{--                <div class="img-thumbnail mb-3">--}}
-{{--                        <img class="img-fluid" src="{{$icon->temporaryUrl()}}">--}}
-{{--                </div>--}}
+                <div class="img-thumbnail mb-3">
+                        <img class="img-fluid" src="{{$icon->temporaryUrl()}}">
+                </div>
             @endif
         &nbsp;
         <button type="submit" class="btn btn-brand" id="submit">اضافه کردن</button>

@@ -27,5 +27,6 @@
 <script src="{{asset('asset/panel/admin')}}/js/js.js"></script>
 <script src="{{mix('js/app.js')}}"></script>
 @livewireScripts
+<script src="{{asset('vendor/livewire/livewire-turbolinks.js')}}" data-turbolinks-eval="false" data-turbo-eval="false"></script>
 @stack('scripts')
 </html>

@@ -9,4 +9,13 @@ trait SweatAlert {
 			'title' => $items['title']
 		]);
 	}
+	
+	public function popupDialog(array $items) {
+		$this->emit('popup-dialog',[
+			'title' => $items['title'] ?? null,
+			'text' => $items['text'] ?? null,
+			'icon' => $items['icon'] ?? null,
+			'route' => $items['route'] ?? null,
+		]);
+	}
 }

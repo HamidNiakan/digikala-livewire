@@ -17,7 +17,7 @@
         </div>
         <div class="row no-gutters  ">
             <div class="col-8 margin-left-10 margin-bottom-15 border-radius-3">
-                <div class="table__box">
+                <div class="table__box" >
                     <table class="table">
 
                         <thead role="rowgroup">
@@ -30,22 +30,35 @@
                             <th>عملیات</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        @if($categories->isNotEmpty())
-                            @foreach($categories as $category)
-                                <livewire:panel.admin.category.data-table :category="$category" :key="time().$category->id"/>
-                            @endforeach
+                        <tbody wire:init="loadCategories">
+                        @if($this->readToLoad)
+                            @if($categories->isNotEmpty())
+                                @foreach($categories as $category)
+                                    <livewire:panel.admin.category.data-table :category="$category" :key="time().$category->id"/>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="6">
+                                        اطلاعات یافت نشد
+                                    </td>
+                                </tr>
+                            @endif
                         @else
                             <tr>
-                                <td colspan="6">
-                                    اطلاعات یافت نشد
+                                <td colspan="6" class="text-center">
+                                    <div class="spinner-border" role="status">
+                                        <span class="sr-only"></span>
+                                    </div>
                                 </td>
                             </tr>
                         @endif
 
                         </tbody>
                     </table>
-                    {{$categories->render()}}
+                    @if($this->readToLoad)
+                        {{$categories->render()}}
+                    @endif
+
                 </div>
             </div>
             <div class="col-4 bg-white padding-0">
