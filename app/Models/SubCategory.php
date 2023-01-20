@@ -9,40 +9,37 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Category extends Model implements HasMedia
+class SubCategory extends Model implements HasMedia
 {
     use HasFactory;
 	use SoftDeletes;
 	use InteractsWithMedia;
 	
-	protected $with = [
-		'media'
-	];
-	
 	protected $fillable = [
 		'title',
 		'slug',
 		'link',
-		'is_published'
+		'category_id'
 	];
 	
+	
 	protected $casts = [
-		'is_published' => 'boolean',
-		'title' => 'string'
+		'is_published' => 'boolean'
 	];
 	
 	public function registerMediaCollections (): void {
-		$this->addMediaCollection('category-icon')
+		$this->addMediaCollection('subCategory-icon')
 			->singleFile();
 	}
 	
 	public function registerMediaConversions ( Media $media = null ): void {
-			$this->addMediaConversion('thumb')
-				->width(300)
-				->height(300);
+		$this->addMediaConversion('thumb')
+			->width(300)
+			->height(300);
 	}
 	
-	public function subCategories() {
-		return $this->hasMany(SubCategory::class);
+	public function category() {
+		return $this->belongsTo(Category::class);
 	}
+	
 }
