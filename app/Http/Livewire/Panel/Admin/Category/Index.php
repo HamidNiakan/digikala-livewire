@@ -15,12 +15,18 @@ class Index extends Component {
 		$this->readToLoad = true;
 	}
 	
+	
 	protected $paginationTheme = 'bootstrap';
-	protected $listeners       = [ 'refreshTable' => '$refresh' ];
+	protected $listeners       = [ 'refreshTable' => '$refresh', 'categoryTrashCount' => 'categoryTrashCount' ];
 	public    $search;
+	public int $trashCount = 0;
 	protected $queryString = [
 		'search',
 	];
+	
+	public function categoryTrashCount(array $params) {
+		$this->trashCount = $params['count'];
+	}
 	
 	public function render () {
 		$categories = Category::query()
@@ -31,7 +37,7 @@ class Index extends Component {
 							  })
 							  ->latest()
 							  ->paginate(4);
-		
+		$this->trashCount = Category::query()->onlyTrashed()->count();
 		return view('livewire.panel.admin.category.index' , [
 			'categories' => $this->readToLoad ? $categories : [],
 		]);

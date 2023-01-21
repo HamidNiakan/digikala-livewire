@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Panel\Admin\SubCategory;
 
+use App\Models\Category;
 use App\Models\SubCategory;
 use App\Traits\SweatAlert;
 use Livewire\Component;
@@ -38,6 +39,9 @@ class DataTable extends Component
 								'icon' => __('alert-icon.icon.success') ,
 								'title' => __('messages.subCategory.destroy'),
 							]);
+		$this->emit('subCategoryTrashCount',[
+			'count' => Category::query()->onlyTrashed()->count()
+		]);
 	}
 	
 	public function edit() {

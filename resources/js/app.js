@@ -25,7 +25,6 @@ const Toast = Swal.mixin({
 
 
 window.addEventListener('livewire:load', () => {
-    uploadFile()
     Livewire.on('destroy', (id) => {
         $('.table').find('#row' + id).remove();
     })
@@ -59,6 +58,8 @@ window.addEventListener('livewire:load', () => {
             }
         })
     })
+
+    uploadFile()
 })
 
 

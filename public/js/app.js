@@ -31286,7 +31286,6 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_3___default().mixin({
   }
 });
 window.addEventListener('livewire:load', function () {
-  uploadFile();
   Livewire.on('destroy', function (id) {
     $('.table').find('#row' + id).remove();
   });
@@ -31317,6 +31316,7 @@ window.addEventListener('livewire:load', function () {
       }
     });
   });
+  uploadFile();
 });
 function uploadFile() {
   var progressSection = document.querySelector('#progressBar'),

@@ -13,6 +13,9 @@
                         <input type="text" wire:model.debounce.10000="search" class="text" placeholder="جستجو ...">
                     </form>
                 </a>
+                <a class="tab__item btn btn-danger text-white float-end mt-2" href="{{route('admin.category.trashed')}}">
+                    سطل زباله({{$trashCount}})
+                </a>
             </div>
         </div>
         <div class="row no-gutters  ">

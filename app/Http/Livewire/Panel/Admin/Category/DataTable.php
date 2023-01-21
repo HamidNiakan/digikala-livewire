@@ -37,6 +37,9 @@ class DataTable extends Component {
 								'icon' => __('alert-icon.icon.success') ,
 								'title' => __('messages.category.destroy'),
 							]);
+		$this->emit('categoryTrashCount',[
+			'count' => Category::query()->onlyTrashed()->count()
+		]);
 	}
 	
 	public function edit() {
