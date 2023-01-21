@@ -9,9 +9,9 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class SubCategory extends Model implements HasMedia
+class ChildCategory extends Model implements HasMedia
 {
-    use HasFactory;
+	use HasFactory;
 	use SoftDeletes;
 	use InteractsWithMedia;
 	
@@ -19,7 +19,7 @@ class SubCategory extends Model implements HasMedia
 		'title',
 		'slug',
 		'link',
-		'category_id'
+		'sub_category_id'
 	];
 	
 	
@@ -28,22 +28,17 @@ class SubCategory extends Model implements HasMedia
 	];
 	
 	public function registerMediaCollections (): void {
-		$this->addMediaCollection('subCategory-icon')
-			->singleFile();
+		$this->addMediaCollection('childCategory-icon')
+			 ->singleFile();
 	}
 	
 	public function registerMediaConversions ( Media $media = null ): void {
 		$this->addMediaConversion('thumb')
-			->width(300)
-			->height(300);
+			 ->width(300)
+			 ->height(300);
 	}
 	
-	public function category() {
-		return $this->belongsTo(Category::class);
+	public function subCategory() {
+		return $this->belongsTo(SubCategory::class);
 	}
-	
-	public function ChildCategories() {
-		return $this->hasMany(ChildCategory::class);
-	}
-	
 }

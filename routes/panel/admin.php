@@ -15,3 +15,9 @@ Route::prefix('subCategory')
 		Route::get('',\App\Http\Livewire\Panel\Admin\SubCategory\Index::class)->name('index');
 		Route::get('update/{slug}',\App\Http\Livewire\Panel\Admin\SubCategory\Update::class)->name('update');
 	});
+Route::prefix('childCategory')
+	 ->name('childCategory.')
+	 ->group(function () {
+		 Route::get('',\App\Http\Livewire\Panel\Admin\ChildCategory\Index::class)->name('index');
+		 Route::get('update/{slug}',\App\Http\Livewire\Panel\Admin\ChildCategory\Update::class)->name('update');
+	 });

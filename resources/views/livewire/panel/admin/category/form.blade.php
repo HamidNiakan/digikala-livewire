@@ -30,7 +30,7 @@
             @enderror
         </div>
         <div class="form-check">
-            <input class="form-check-input @if($errors->has('icon')) is-invalid @endif @if($category->icon !== null) is-valid @endif" wire:model.defer="category.is_published" type="checkbox" value="" id="flexCheckDefault">
+            <input class="form-check-input @if($errors->has('is_published')) is-invalid @endif @if($category->is_published !== null) is-valid @endif" wire:model.defer="category.is_published" type="checkbox" value="" id="flexCheckDefault">
             <label class="form-check-label" for="flexCheckDefault">
                 آیادرسایت نمایش داده شود؟
             </label>
