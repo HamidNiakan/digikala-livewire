@@ -9,13 +9,16 @@
     <link rel="stylesheet" href="{{asset('asset/panel/admin')}}/css/responsive_991.css" media="(max-width:991px)">
     <link rel="stylesheet" href="{{asset('asset/panel/admin')}}/css/responsive_768.css" media="(max-width:768px)">
     <link rel="stylesheet" href="{{asset('asset/panel/admin')}}/css/font.css">
+    <link rel="stylesheet" href="{{asset('vendor/fontawesome/css/all.min.css')}}">
     @yield('styles')
+    <script src="{{mix('js/app.js')}}"></script>
     @livewireStyles
 </head>
 <body>
 <livewire:panel.admin.dashboard.side-bar/>
 <div class="content">
     <livewire:panel.admin.dashboard.header/>
+    <livewire:panel.admin.dashboard.breadcrumb/>
     {{$slot}}
 </div>
 </body>
@@ -24,6 +27,8 @@
 <script src="{{asset('vendor/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('vendor/bootstrap/js/popper.min.js')}}"></script>
 <script src="{{asset('asset/panel/admin')}}/js/js.js"></script>
+<script src="{{asset('vendor/fontawesome/js/all.min.js')}}"></script>
 @livewireScripts
+<script src="{{asset('vendor/livewire/livewire-turbolinks.js')}}" data-turbolinks-eval="false" data-turbo-eval="false"></script>
 @stack('scripts')
 </html>
