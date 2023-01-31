@@ -45,8 +45,12 @@ class Update extends Component {
 							   'title' => __('alert-icon.title.success') ,
 							   'text' => __('messages.category.update') ,
 							   'icon' => __('alert-icon.icon.success') ,
-							   'route' => route('admin.category.index'),
+							   'route' => route('admin.category.index') ,
 						   ]);
+		activity()
+			->performedOn($this->category)
+			->withProperties($this->category)
+			->log(__('messages.category.logs.update'));
 	}
 	
 	public function render () {

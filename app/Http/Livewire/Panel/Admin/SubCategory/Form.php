@@ -42,6 +42,10 @@ class Form extends Component
 					   ->toMediaCollection('subCategory-icon');
 		$this->subCategory = new SubCategory();
 		$this->icon = null;
+		activity()
+			->performedOn($this->subCategory)
+			->withProperties($this->subCategory)
+			->log(__('messages.subCategory.logs.create'));
 	}
     public function render()
     {

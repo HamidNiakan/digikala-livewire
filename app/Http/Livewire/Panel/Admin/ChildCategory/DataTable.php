@@ -22,6 +22,10 @@ class DataTable extends Component
 									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.childCategory.unpublished'),
 								]);
+			activity()
+				->performedOn($this->childCategory)
+				->withProperties($this->childCategory)
+				->log(__('messages.childCategory.logs.unpublished'));
 		}
 		else {
 			$this->childCategory->is_published = true;
@@ -30,6 +34,10 @@ class DataTable extends Component
 									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.childCategory.published'),
 								]);
+			activity()
+				->performedOn($this->childCategory)
+				->withProperties($this->childCategory)
+				->log(__('messages.childCategory.logs.published'));
 		}
 	}
 	
@@ -43,6 +51,10 @@ class DataTable extends Component
 		$this->emit('childCategoryTrashCount',[
 			'count' => ChildCategory::query()->onlyTrashed()->count()
 		]);
+		activity()
+			->performedOn($this->childCategory)
+			->withProperties($this->childCategory)
+			->log(__('messages.childCategory.logs.delete'));
 	}
 	
 	public function edit() {

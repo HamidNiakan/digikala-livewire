@@ -19,6 +19,10 @@ class DataTable extends Component {
 									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.category.unpublished'),
 								]);
+			activity()
+				->performedOn($this->category)
+				->withProperties($this->category)
+				->log(__('messages.category.logs.unpublished'));
 		}
 		else {
 			$this->category->is_published = true;
@@ -27,6 +31,10 @@ class DataTable extends Component {
 									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.category.published'),
 								]);
+			activity()
+				->performedOn($this->category)
+				->withProperties($this->category)
+				->log(__('messages.category.logs.published'));
 		}
 	}
 	
@@ -40,6 +48,10 @@ class DataTable extends Component {
 		$this->emit('categoryTrashCount',[
 			'count' => Category::query()->onlyTrashed()->count()
 		]);
+		activity()
+			->performedOn($this->category)
+			->withProperties($this->category)
+			->log(__('messages.category.logs.delete'));
 	}
 	
 	public function edit() {

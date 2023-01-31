@@ -53,6 +53,10 @@ class Update extends Component {
 							   'icon' => __('alert-icon.icon.success') ,
 							   'route' => route('admin.subCategory.index') ,
 						   ]);
+		activity()
+			->performedOn($this->subCategory)
+			->withProperties($this->subCategory)
+			->log(__('messages.subCategory.logs.update'));
 	}
 	
 	public function render () {

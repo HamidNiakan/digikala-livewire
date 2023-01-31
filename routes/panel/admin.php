@@ -24,3 +24,8 @@ Route::prefix('childCategory')
 		 Route::get('update/{slug}',\App\Http\Livewire\Panel\Admin\ChildCategory\Update::class)->name('update');
 		 Route::get('trashed',\App\Http\Livewire\Panel\Admin\ChildCategory\Trashed::class)->name('trashed');
 	 });
+Route::prefix('log')
+	->name('log.')
+	->group(function () {
+		Route::get('',\App\Http\Livewire\Panel\Admin\Log\Index::class)->name('index');
+	});

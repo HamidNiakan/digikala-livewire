@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -14,6 +16,7 @@ class Category extends Model implements HasMedia
     use HasFactory;
 	use SoftDeletes;
 	use InteractsWithMedia;
+	use LogsActivity;
 	
 	protected $with = [
 		'media'
@@ -44,5 +47,11 @@ class Category extends Model implements HasMedia
 	
 	public function subCategories() {
 		return $this->hasMany(SubCategory::class);
+	}
+
+	public function getActivitylogOptions (): LogOptions {
+		return  LogOptions::defaults()
+			->logFillable()
+			->useLogName('category');
 	}
 }

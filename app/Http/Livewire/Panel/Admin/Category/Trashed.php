@@ -13,9 +13,9 @@ class Trashed extends Component {
 	
 	public    $search;
 	protected $queryString = [
-		'search',
+		'search' ,
 	];
-	public $readToLoad = false;
+	public    $readToLoad  = false;
 	
 	public function loadCategories () {
 		$this->readToLoad = true;
@@ -31,6 +31,10 @@ class Trashed extends Component {
 									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.category.restore') ,
 								]);
+			activity()
+				->performedOn($category)
+				->withProperties($category)
+				->log(__('messages.category.logs.recovery'));
 		}
 	}
 	
@@ -44,6 +48,10 @@ class Trashed extends Component {
 									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.category.destroy') ,
 								]);
+			activity()
+				->performedOn($category)
+				->withProperties($category)
+				->log(__('messages.category.logs.force-delete'));
 		}
 	}
 	

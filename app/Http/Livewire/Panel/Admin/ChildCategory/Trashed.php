@@ -33,6 +33,10 @@ class Trashed extends Component
 									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.subCategory.restore') ,
 								]);
+			activity()
+				->performedOn($this->childCategory)
+				->withProperties($this->childCategory)
+				->log(__('messages.childCategory.logs.recovery'));
 		}
 	}
 	
@@ -46,6 +50,10 @@ class Trashed extends Component
 									'icon' => __('alert-icon.icon.success') ,
 									'title' => __('messages.subCategory.destroy') ,
 								]);
+			activity()
+				->performedOn($this->childCategory)
+				->withProperties($this->childCategory)
+				->log(__('messages.childCategory.logs.force-delete'));
 		}
 	}
     public function render()

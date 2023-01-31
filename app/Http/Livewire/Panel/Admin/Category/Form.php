@@ -38,6 +38,10 @@ class Form extends Component {
 		$this->category->addMedia($this->icon)
 					   ->usingName($this->category->slug)
 					   ->toMediaCollection('category-icon');
+		activity()
+			->performedOn($this->category)
+			->withProperties($this->category)
+			->log(__('messages.category.logs.create'));
 		$this->category = new Category();
 		$this->icon = null;
 	}
