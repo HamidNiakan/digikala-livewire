@@ -29,3 +29,10 @@ Route::prefix('log')
 	->group(function () {
 		Route::get('',\App\Http\Livewire\Panel\Admin\Log\Index::class)->name('index');
 	});
+Route::prefix('brand')
+	->name('brand.')
+	->group(function () {
+		Route::get('',\App\Http\Livewire\Panel\Admin\Brand\Index::class)->name('index');
+		Route::get('update/{slug}',\App\Http\Livewire\Panel\Admin\Brand\Update::class)->name('update');
+		Route::get('trash',\App\Http\Livewire\Panel\Admin\Brand\Trash::class)->name('trashed');
+	});
