@@ -55,5 +55,24 @@ return [
 			'recovery' => 'بازیابی'
 		]
 	],
+	'brand' => [
+		'log-name' => 'brand',
+		'media-collection' => 'brand-icon',
+		'creation' => 'برند با موفقبت ثبت شد.',
+		'update' => 'برند با موفقیت ویرایش شد.',
+		'destroy' => 'برند با موفقیت حذف شد.',
+		'restore' => 'برند با موفقیت بازیابی شد.',
+		'published' => 'برند با موفقیت منتشر شد.',
+		'unpublished' => 'برند با موفقیت مخفی شد.',
+		'logs' => [
+			'create' => 'ایجاد',
+			'update' => 'ویرایش',
+			'delete' => 'حذف',
+			'force-delete' => 'حذف کامل',
+			'published' => 'منتشر شده',
+			'unpublished' => 'مخفی شده',
+			'recovery' => 'بازیابی'
+		]
+	]
 	
 ];
