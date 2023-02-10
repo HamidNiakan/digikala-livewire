@@ -16,6 +16,7 @@
             <li class="item-li i-list {{request()->routeIs('admin.log.index') ? 'is-active' : ''}}"><a href="{{route('admin.log.index')}}">گزارشات سیستم</a></li>
             <hr/>
             <li class="item-li i-courses {{request()->routeIs('admin.brand.index') ? 'is-active' : ''}}"><a href="{{route('admin.brand.index')}}">برندها</a></li>
+            <li class="item-li i-courses {{request()->routeIs('admin.product.index') ? 'is-active' : ''}} "><a href="{{route('admin.product.index')}}">محصولات</a></li>
             <li class="item-li i-users"><a href="users.html"> کاربران</a></li>
 
             <li class="item-li i-slideshow"><a href="slideshow.html">اسلایدشو</a></li>
