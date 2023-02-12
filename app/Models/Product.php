@@ -24,7 +24,7 @@ class Product extends Model implements HasMedia {
 	protected $guarded = [];
 	
 	public function registerMediaCollections (): void {
-		$this->addMediaCollection('product-image')
+		$this->addMediaCollection(__('messages.product.media-collection'))
 			 ->singleFile();
 	}
 	
@@ -51,6 +51,10 @@ class Product extends Model implements HasMedia {
 		return $this->belongsTo(ChildCategory::class);
 	}
 	
+	public function brand() {
+		return $this->belongsTo(Brand::class);
+	}
+	
 	public function sluggable (): array {
 		return [
 			'slug' => [
@@ -58,13 +62,33 @@ class Product extends Model implements HasMedia {
 					'title' ,
 					'id' ,
 				] ,
+				'onUpdate' => true ,
 			] ,
 		];
 	}
 	
+	public static function generateCode () {
+		$code = 'dkp-' . random_int(1000000 , 9999999);
+		$product = self::query()
+					   ->where('code' , $code)
+					   ->first();
+		if ( $product ) {
+			return self::generateCode();
+		}
+		
+		return $code;
+	}
+	
 	public function getActivitylogOptions (): LogOptions {
-		LogOptions::defaults()
-				  ->logUnguarded()
-				  ->useLogName('product');
+		return LogOptions::defaults()
+						 ->logUnguarded()
+						 ->useLogName(__('messages.product.log-name'));
+	}
+	
+	protected static function boot () {
+		parent::boot();
+		static::creating(function ( $model ) {
+			$model->code = self::generateCode();
+		});
 	}
 }

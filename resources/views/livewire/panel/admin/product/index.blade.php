@@ -13,8 +13,11 @@
                         <input type="text" wire:model.debounce.10000="search" class="text" placeholder="جستجو ...">
                     </form>
                 </a>
-                <a class="tab__item btn btn-danger text-white float-end mt-2" href="{{route('admin.category.trashed')}}">
+                <a class="tab__item btn btn-danger text-white float-end mt-2" href="{{route('admin.product.trashed')}}">
                     سطل زباله({{$trashCount}})
+                </a>
+                <a class="tab__item btn btn-success text-white float-end mt-2" style="margin-left: 2px" href="{{route('admin.product.form')}}">
+                   ایجاد محصول جدید
                 </a>
             </div>
         </div>
@@ -26,12 +29,13 @@
                         <thead role="rowgroup">
                         <tr role="row" class="title-row">
                             <th>شناسه</th>
+                            <th>کد محصول</th>
                             <th>عکس</th>
                             <th>عنوان محصول</th>
-                            <th>عنوان محصول(به لاتین)</th>
                             <th>دسته بندی محصول</th>
                             <th>برند محصول</th>
                             <th>قیمت محصول</th>
+                            <th>قیمت  تخفیف محصول</th>
                             <th>وضعیت</th>
                             <th>عملیات</th>
                         </tr>
@@ -40,7 +44,7 @@
                         @if($this->readToLoad)
                             @if($products->isNotEmpty())
                                 @foreach($products as $product)
-                                    <livewire:panel.admin.product.data-table :product="$products" :key="time().$products->id"/>
+                                    <livewire:panel.admin.product.data-table :product="$product" :key="time().$product->id"/>
                                 @endforeach
                             @else
                                 <tr>

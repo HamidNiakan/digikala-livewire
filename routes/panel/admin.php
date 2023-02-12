@@ -45,4 +45,7 @@ Route::prefix('product')
 	->name('product.')
 	->group(function () {
 		Route::get('',\App\Http\Livewire\Panel\Admin\Product\Index::class)->name('index');
+		Route::get('form',\App\Http\Livewire\Panel\Admin\Product\Form::class)->name('form');
+		Route::get('update/{slug}',\App\Http\Livewire\Panel\Admin\Product\Update::class)->name('update');
+		Route::get('trash',\App\Http\Livewire\Panel\Admin\Product\Trashed::class)->name('trashed');
 	});

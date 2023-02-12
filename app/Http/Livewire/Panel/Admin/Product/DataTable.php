@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Panel\Admin\Product;
 
-use App\Enums\ProductStatus;
+use App\Models\Category;
 use App\Models\Product;
 use App\Traits\SweatAlert;
 use Livewire\Component;
@@ -12,31 +12,52 @@ class DataTable extends Component {
 	
 	public Product $product;
 	
-	public function changeStatus () {
-		if ( $this->product->status === ProductStatus::DeActive ) {
-			$this->product->status = ProductStatus::Active;
+	public function changePublish () {
+		if ( $this->product->is_published ) {
+			$this->product->is_published = false;
 			$this->product->touch();
 			$this->toastMessage([
 									'icon' => __('alert-icon.icon.success') ,
-									'title' => __('messages.product.active') ,
+									'title' => __('messages.product.unpublished') ,
 								]);
 			activity()
 				->performedOn($this->product)
 				->withProperties($this->product)
-				->log(__('messages.product.log.active'));
+				->log(__('messages.global.logs.unpublished'));
 		}
 		else {
-			$this->product->status = ProductStatus::DeActive;
+			$this->product->is_published = true;
 			$this->product->touch();
 			$this->toastMessage([
 									'icon' => __('alert-icon.icon.success') ,
-									'title' => __('messages.product.deActive') ,
+									'title' => __('messages.product.published') ,
 								]);
 			activity()
 				->performedOn($this->product)
 				->withProperties($this->product)
-				->log(__('messages.product.log.deActive'));
+				->log(__('messages.global.logs.published'));
 		}
+	}
+	
+	public function edit () {
+		return redirect()->route('admin.product.update' , $this->product->slug);
+	}
+	
+	public function destroy () {
+		$this->product->delete();
+		$this->toastMessage([
+								'icon' => __('alert-icon.icon.success') ,
+								'title' => __('messages.product.destroy') ,
+							]);
+		$this->emit('categoryTrashCount' , [
+			'count' => Category::query()
+							   ->onlyTrashed()
+							   ->count(),
+		]);
+		activity()
+			->performedOn($this->product)
+			->withProperties($this->product)
+			->log(__('messages.global.logs.delete'));
 	}
 	
 	public function render () {

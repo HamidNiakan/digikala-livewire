@@ -13,6 +13,9 @@ class Index extends Component {
 	public int  $trashCount      = 0;
 	public      $search;
 	public bool $readToLoad      = false;
+	protected   $listeners       = [
+		'categoryTrashCount' ,
+	];
 	
 	public function loadProducts () {
 		$this->readToLoad = true;
@@ -22,7 +25,14 @@ class Index extends Component {
 		'search' ,
 	];
 	
+	public function categoryTrashCount ( array $params ) {
+		$this->trashCount = $params[ 'count' ];
+	}
+	
 	public function render () {
+		$this->trashCount = Product::query()
+								   ->onlyTrashed()
+								   ->count();
 		$products = $this->readToLoad ? Product::query()
 											   ->with([
 														  'category' ,
@@ -31,8 +41,7 @@ class Index extends Component {
 													  ])
 											   ->where(function ( $qry ) {
 												   $qry->where('code' , $this->search)
-													   ->orWhere('title' , 'LIKE' , "%{$this->search}%")
-													   ->orWhere('title_en' , 'LIKE' , "%{$this->search}%");
+													   ->orWhere('title' , 'LIKE' , "%{$this->search}%");
 											   })
 											   ->latest()
 											   ->paginate(6) : [];

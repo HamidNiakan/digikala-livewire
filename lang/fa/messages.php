@@ -2,7 +2,16 @@
 return [
 	
 	'global' => [
-		'not-found' => 'اطلاعات یافت نشد.'
+		'not-found' => 'اطلاعات یافت نشد.',
+		'logs' => [
+			'create' => 'ایجاد',
+			'update' => 'ویرایش',
+			'delete' => 'حذف',
+			'force-delete' => 'حذف کامل',
+			'published' => 'منتشر شده',
+			'unpublished' => 'مخفی شده',
+			'recovery' => 'بازیابی'
+		]
 	],
 	
 	'category' => [
@@ -73,15 +82,17 @@ return [
 			'unpublished' => 'مخفی شده',
 			'recovery' => 'بازیابی'
 		]
-	]
+	],
 	
 	'product' => [
-		'active' => 'محصول با موفقیت فعال شد.',
-		'deActive' => 'محصول با موفقیت غیرفعال شد.',
-		'log' =>  [
-			'active' => 'فعال کردن',
-			'deActive' => 'غیرفعال کردن'
-		]
+		'log-name' => 'product',
+		'media-collection' => 'product-image',
+		'creation' => 'محصول با موفقیت ثبت شد.',
+		'update' => 'محصول با موفقیت ویرایش شد.',
+		'destroy' => 'محصول با موفقیت حذف شد.',
+		'restore' => 'محصول با موفقیت بازیابی شد.',
+		'published' => 'محصول منتشر شد.',
+		'unpublished' => 'محصول مخفی شد.',
 	]
 	
 ];

@@ -10,8 +10,14 @@
     <link rel="stylesheet" href="{{asset('asset/panel/admin')}}/css/responsive_768.css" media="(max-width:768px)">
     <link rel="stylesheet" href="{{asset('asset/panel/admin')}}/css/font.css">
     <link rel="stylesheet" href="{{asset('vendor/fontawesome/css/all.min.css')}}">
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
     @yield('styles')
     <script src="{{mix('js/app.js')}}"></script>
+    <style>
+        .swal2-select {
+            display: none;
+        }
+    </style>
     @livewireStyles
 </head>
 <body>
