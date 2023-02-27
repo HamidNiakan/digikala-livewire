@@ -15,6 +15,21 @@
 
                 </div>
                 <div class="form-floating mb-3">
+                    <div wire:ignore>
+                        <select wire:model.debounce.1000ms="brand.category_id" id="categories" class=" @if($errors->has('brand.category_id')) is-invalid @endif @if($brand->category_id !== null) is-valid @endif">
+                            <option selected value="">انتخاب زیر دسته بندی</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->id}}">{{$category->title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @error('brand.category_id')
+                    <div class="invalid-feedback" style="display: flex">
+                        {{$message}}
+                    </div>
+                    @enderror
+                </div>
+                <div class="form-floating mb-3">
                     <textarea rows="3" wire:model.debounce.1000ms="brand.description" class="form-control @if($errors->has('brand.description')) is-invalid @endif @if($brand->description !== null) is-valid @endif"></textarea>
                     <label for="floatingInput">توضیحات</label>
                 </div>
@@ -42,12 +57,11 @@
                         <img class="img-fluid" src="{{$icon->temporaryUrl()}}">
                     </div>
                 @else
-{{--                    @if($brand->getFirstMediaUrl(__('messages.brand.media-collection'),'thumb'))--}}
-{{--                        <div class="img-thumbnail mb-3">--}}
-{{--                            <img class="img-fluid" src="{{$brand->getFirstMediaUrl(__('messages.brand.media-collection'),'thumb')}}">--}}
-{{--                        </div>--}}
-
-{{--                    @endif--}}
+                    @if($brand->getFirstMediaUrl(__('messages.brand.media-collection'),'thumb'))
+                        <div class="img-thumbnail mb-3">
+                            <img class="img-fluid" src="{{$brand->getFirstMediaUrl(__('messages.brand.media-collection'),'thumb')}}">
+                        </div>
+                    @endif
                 @endif
                 &nbsp;
                 <button type="submit" class="btn btn-brand" id="submit">ویرایش کردن</button>
@@ -55,3 +69,13 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script>
+        $('#categories').on('change', function () {
+            let value = $(this).val();
+            @this
+        .
+            set('brand.category_id', value)
+        })
+    </script>
+@endpush

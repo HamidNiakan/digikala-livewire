@@ -12,7 +12,22 @@
 
         </div>
         <div class="form-floating mb-3">
-            <textarea rows="3"  wire:model.debounce.1000ms="brand.description" class="form-control @if($errors->has('brand.description')) is-invalid @endif @if($brand->description !== null) is-valid @endif"></textarea>
+            <div wire:ignore>
+                <select wire:model.debounce.1000ms="brand.category_id" id="categories" class=" @if($errors->has('brand.category_id')) is-invalid @endif @if($brand->category_id !== null) is-valid @endif">
+                    <option selected value="">انتخاب زیر دسته بندی</option>
+                    @foreach($categories as $category)
+                        <option value="{{$category->id}}">{{$category->title}}</option>
+                    @endforeach
+                </select>
+            </div>
+            @error('brand.category_id')
+            <div class="invalid-feedback" style="display: flex">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+        <div class="form-floating mb-3">
+            <textarea rows="3" wire:model.debounce.1000ms="brand.description" class="form-control @if($errors->has('brand.description')) is-invalid @endif @if($brand->description !== null) is-valid @endif"></textarea>
             <label for="floatingInput">توضیحات</label>
         </div>
         <div class="form-check">
@@ -24,7 +39,7 @@
         <div class="mb-3">
             <label for="formFile" class="form-label">آپلود ایکون</label>
             <input class="form-control" type="file" wire:model.defer="icon" id="formFile">
-            <div class="progress mt-2" wire:target="icon"  style="display: none" id="progressBar">
+            <div class="progress mt-2" wire:target="icon" style="display: none" id="progressBar">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" wire:target="icon" role="progressbar"></div>
             </div>
 
@@ -43,3 +58,13 @@
         <button type="submit" class="btn btn-brand" id="submit">اضافه کردن</button>
     </form>
 </div>
+@push('scripts')
+    <script>
+        $('#categories').on('change', function () {
+            let value = $(this).val();
+            @this
+        .
+            set('brand.category_id', value)
+        })
+    </script>
+@endpush

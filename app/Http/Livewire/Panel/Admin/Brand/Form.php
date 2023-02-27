@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Panel\Admin\Brand;
 
 use App\Http\Requests\brand\AddBrandRequest;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Traits\SweatAlert;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -48,6 +49,10 @@ class Form extends Component {
 	}
 	
 	public function render () {
-		return view('livewire.panel.admin.brand.form');
+		$categories = Category::query()
+							  ->where('is_published' , true)
+							  ->get();
+		
+		return view('livewire.panel.admin.brand.form',compact('categories'));
 	}
 }
