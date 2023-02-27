@@ -24,6 +24,7 @@ class Brand extends Model implements HasMedia {
 		'title' ,
 		'slug' ,
 		'is_published' ,
+		'category_id'
 	];
 	
 	public function registerMediaCollections (): void {
@@ -40,6 +41,10 @@ class Brand extends Model implements HasMedia {
 	public function scopeTrashCount ( Builder $builder ): int {
 		return $builder->onlyTrashed()
 					   ->count();
+	}
+	
+	public function category() {
+		return $this->belongsTo(Category::class);
 	}
 	
 	public function sluggable (): array {

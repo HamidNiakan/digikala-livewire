@@ -28,7 +28,8 @@ class UpdateBrandRequest extends FormRequest {
 			] ,
 			'icon' => 'nullable|mimes:png,jpg,jpeg,svg' ,
 			'brand.description' => 'nullable' ,
-			'brand.is_published' => 'boolean' ,
+			'brand.category_id' => 'required',
+			'brand.is_published' => 'nullable',
 		];
 	}
 	
@@ -37,6 +38,7 @@ class UpdateBrandRequest extends FormRequest {
 			'brand.title.required' => 'عنوان برند را وارد کنید' ,
 			'brand.title.unique' => 'این عنوان قبلا در سیستم ثبت شده است' ,
 			'icon.mimes' => 'پسوند ایکون باید png,jpg,jpeg و svg باشد' ,
+			'brand.category_id' => 'دسته بندی را انتخاب کنید'
 		];
 	}
 }

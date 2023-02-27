@@ -2,6 +2,7 @@
     <td><a href="">{{$brand->id}}</a></td>
     <td><img src="{{$brand->getFirstMediaUrl(__('messages.brand.media-collection'),'thumb')}}" width="100px"/></td>
     <td>{{$brand->title}}</td>
+    <td>{{$brand->category ? $brand->category->title : ''}}</td>
     <td>
         @if($brand->is_published)
             <span class="badge bg-success">
